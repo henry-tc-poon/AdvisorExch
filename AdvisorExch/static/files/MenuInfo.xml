@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+	<Groups>
+		<Group  name="Head Office">
+			<MenuItems>
+				<Item  Display="Advisor"      	       vName="advisor"         html="advisorInfo/advisor.html" />
+				<Item  Display="Demographic"        	 vName="demographic"     html="advisorInfo/demographic.html" />
+				<Item  Display="Book Composition"		   vName="composition"     html="advisorInfo/composition.html" />
+				<Item  Display="Client Information"    vName="clientInfo"      html="advisorInfo/cliInfo.html" />
+				<Item  Display="Revenue"          		 vName="revenue"         html="advisorInfo/revenue.html" />
+				<Item  Display="Investment Philosophy" vName="investment"      html="advisorInfo/investment.html" />
+				<Item  Display="Service Provided" 		 vName="serviceProvided" html="advisorInfo/service.html" />
+			</MenuItems>
+		</Group>
+
+		<Group  name="Advisor">
+			<MenuItems>
+				<Item  Display="Advisor"      	       vName="advisor"        html="advisorInfo/advisor.html" />
+				<Item  Display="Demographic"        	 vName="demographic"    html="advisorInfo/demographic.html" />
+				<Item  Display="Book Composition"		   vName="Canned Reports" html="advisorInfo/composition.html" />
+			</MenuItems>
+		</Group>
+
+	</Groups>
+</Settings>

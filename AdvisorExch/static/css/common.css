@@ -1,0 +1,88 @@
+
+/* https://www.color-hex.com/color/  Hex number */
+/*  ==========================  General   ==========================  */
+
+body {
+  margin: 2px ;
+  padding-top: 2px;
+  font-family: arial, sans-serif ;
+  background-color: #D8D8D8 ;
+}
+
+foot {
+  margin: 2px ;
+  padding-top: 2px;
+  font-family: arial, sans-serif ;
+  background-color: #D8D8D8 ;
+}
+
+/***************************/
+/* Style the submit button */
+form.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 35px ;
+}
+
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid grey;
+  float: left;
+  width: 90%;
+  background: #F1F1F1;
+}
+
+form.search button {
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: #FFFFFF; /* #2196F3;  */
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.search button:hover {
+  background: #0b7dda;  /* #0b7dda; */
+}
+
+/*****************************************************************/
+table.Hoverable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+table.Hoverable thead th {
+    text-align: center;
+    font: 15px Arial, sans-serif;
+    font-weight: bold;
+    background-color: #00CCCC;
+    border: solid 1px #000000;
+    color: #0000BB;
+    height: 20px;
+    padding: 10px;
+}
+table.Hoverable tbody td {
+    font-size: 12px Arial, sans-serif;
+    height: 13px;
+    border: solid 1px #000000;
+    padding: 10px;
+}
+table.Hoverable tbody tr:nth-child(odd){
+    background-color: #BCEEFF ;
+}
+table.Hoverable tbody tr:nth-child(odd):hover{
+    background-color: #FFFACD ;
+    cursor: pointer;
+}
+table.Hoverable tbody tr:nth-child(even){
+    background-color: #BDFFEE ;
+}
+table.Hoverable tbody tr:nth-child(even):hover{
+    background-color: #FFFACD ;
+    cursor: pointer;
+}

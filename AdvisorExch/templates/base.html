@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css\common.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css\navagatinBar.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css\footerBar.css' %}" />
+    {% block head %}
+    <title>Base HTML - to be overridden</title>
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+    <div class="main-bar">
+      <div class="logo">
+          <img src="{% static 'image\django.png' %}" alt="DJango" />
+      </div>
+      <div class="main-nav" >
+            {% for index, row in dfMenu.iterrows %}
+              {% if row.view == '' %}
+                <li> {{ row.Disp }} </li>
+              {% else %}
+                <li><a href=" {{row.view}} "> {{ row.Disp }} </a></li>
+              {% endif %}
+            {% endfor %}
+      </div>
+      <div class="main-user">
+         <h9> {{ dispName }} &nbsp;&nbsp;&nbsp; </h9>
+      </div>
+    </div>
+    </header>
+
+    <!-- <div id="mainBody"> -->
+    {% block body %}
+      <h1>Base Body - to be overridden</h1>
+    {% endblock %}
+    <!-- </div> -->
+
+    <footer>
+      {% block footer %}
+        <h9>Info: {{ dispInfo  }}</h9>
+        <br/>
+        <h9>Time: {{ currTime  }}</h9>
+      {% endblock %}
+    </footer>
+
+  </body>
+  <br/>
+
+
+</html>

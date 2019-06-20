@@ -1,0 +1,96 @@
+/*==========================  Navagiation Bar  ==========================*/
+
+header {
+  height: 65px;
+  background-color: #8E8E8E ;
+}
+
+.main-bar {
+  display: grid;
+  grid-template-columns: 125px  auto  ;
+  grid-template-rows: 20px  20px  ;
+  grid-template-areas:
+      "lo  mMenu"
+      "lo  uName" ;
+}
+
+.logo {
+  grid-area: lo ;
+  margin-left: 0px ;
+  float: left;
+  z-index: 1 ; /* Stay on top */
+}
+
+.main-nav {
+  grid-area: mMenu ;
+  font-size: 15px ;
+  text-align: right;
+  white-space: nowrap;
+  margin-top: 10px;
+  color: #E3E3E3 ;
+  /*  overflow-x: hidden ; Disable horizontal scroll */
+  /* overflow-y: hidden ; /* Disable vertical scroll */
+}
+
+.main-nav li {
+  display: inline;
+  padding: 5px 10px;
+}
+
+.main-nav li a {
+  color: #191970;
+  transition:  0.5s  ;   /* 0.5 second transition effect */
+  text-decoration: none;
+}
+
+.main-nav li a:hover {
+  color:  #FFFFFF ;
+  transition:  0.5s  ;   /* 0.5 second transition effect */
+}
+
+.main-user {
+  grid-area: uName ;
+  font-size: 12px ;
+  text-align: right;
+  margin-top: 10px;
+  color: #E3E3E3  ;
+/*  overflow-x: hidden ; Disable horizontal scroll */
+}
+
+/**************************  Side Bar  **************************/
+/**** https://www.w3schools.com/howto/howto_js_sidenav.asp   ****/
+
+.side-bar {
+  height: 100% ;
+  border:  0px ; /* solid #231B1B ; */
+  width: 100px ;
+  background-color:  #B0C4DE; /*  #231B1B */
+  position: absolute ;
+  top: 63px ;
+  left: 2px ;
+}
+
+.side-nav {
+    top:  0px ;     /* Stay at the top  */
+    left: 0px ;
+    padding-top: 10px  ;  /* Place content ??px  */
+    padding-left: 2px  ;  /* Place content ??px  */
+    transition:  0.5s  ;   /* 0.5 second transition effect */
+    list-style-type: none ;
+}
+
+.side-nav li {
+  padding: 2px 2px ;
+}
+
+.side-nav li a {
+    text-decoration: none;
+    color: #00BFFF   ;
+    font-size: 14px  ;
+    transition: 0.5s ;
+}
+
+.side-nav li a:hover {
+    color: #F1F1F1   ;
+    transition: 0.5s ;
+}

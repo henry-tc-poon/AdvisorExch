@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% csrf_token %}
+
+{% block head %}
+{% load static %}
+  <link   rel="stylesheet" type="text/css" href="{% static 'css\advisor.css' %}" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/advisor.js' %}" ></script>
+  <title>Advisor Information</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div  class="search-bar" >
+    <table width="500px">
+      <tr>
+      <td>
+        <form  method="GET" class="search" >
+          <input type="text" name = "Search" placeholder="Search ... " >
+          <button type="submit">
+            <img  src="{% static 'image/search.png' %}" height="12" width="12" />
+          </button>
+        </form>
+      </td>
+      </tr>
+      </table>
+  </div>
+  <div  class="advisor-list" >
+    <table class="Hoverable" >
+      <tr>
+        <thead>
+        <th style="width: 200px;"><b> {{ dispHead.0 }} </b></th>
+        <th style="width: 200px;"><b> {{ dispHead.1 }} </b></th>
+        <th style="width: 100px;"><b> {{ dispHead.2 }} </b></th>
+        </thead>
+      </tr>
+    </table>
+    <div style="height: 500px; overflow-y:scroll; width:580px">
+    <table class="Hoverable"  >
+      <tbody>
+      {% for index, row in dfTable.iterrows %}
+        <tr data-href="?Search={{srcStr}}&Code={{row.advisor}}" >
+        <td style="width: 200px; text-align: left;">   {{ row.lastName }}  </td>
+        <td style="width: 200px; text-align: left;">   {{ row.firstName }} </td>
+        <td style="width: 100px; text-align: center;"> {{ row.advisor }}   </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div  class="advisor-detail" >
+      yyy
+  </div>
+
+</div>
+
+{% endblock %}
+<br/>
