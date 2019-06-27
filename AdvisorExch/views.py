@@ -55,6 +55,18 @@ def getMenu (request, menuName):
     return  dictMenu
 
 ##################################################################
+def vUpdtSQL(sqlStmt):
+    with connection.cursor() as cursor:
+        cursor.execute( sqlStmt )
+    return
+
+##################################################################
+def vDelSQL(sqlStmt):
+    with connection.cursor() as cursor:
+        cursor.execute( sqlStmt )
+    return
+
+##################################################################
 def vExecSQL(sqlStmt):
     with connection.cursor() as cursor:
         cursor.execute( sqlStmt )

@@ -1,13 +1,13 @@
 /*****************************************************************/
 .container {
   display: grid;
-  grid-template-columns: 600px, auto;
+  grid-template-columns: 450px, auto;
   grid-template-rows: 45px , 600px ;
   grid-gap: 1px ;
   grid-template-areas:
-    "srch .   "
+    "srch  .  "
     "list detl" ;
-  }
+}
 
 .search-bar {
   grid-area: srch ;
@@ -25,5 +25,6 @@
   grid-area: detl ;
   width: 100% ;
   padding-right: : 1px ;
-  background-color: blue ;
+  background-color: cyan ;
+  float: left;
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% csrf_token %}
+<!-- {% csrf_token %} -->
 
 {% block head %}
 {% load static %}
@@ -16,9 +16,10 @@
     <table width="500px">
       <tr>
       <td>
-        <form  method="GET" class="search" >
+        <form  method="POST" class="search" >
+          {% csrf_token %}
           <input type="text" name = "Search" placeholder="Search ... " >
-          <button type="submit">
+          <button type="submit" name="search_advisor"  value='S' >
             <img  src="{% static 'image/search.png' %}" height="12" width="12" />
           </button>
         </form>
@@ -40,7 +41,7 @@
     <table class="Hoverable"  >
       <tbody>
       {% for index, row in dfTable.iterrows %}
-        <tr data-href="?Search={{srcStr}}&Code={{row.advisor}}" >
+        <tr data-href="{{row.advisor}}" >
         <td style="width: 200px; text-align: left;">   {{ row.lastName }}  </td>
         <td style="width: 200px; text-align: left;">   {{ row.firstName }} </td>
         <td style="width: 100px; text-align: center;"> {{ row.advisor }}   </td>
@@ -51,10 +52,47 @@
     </div>
   </div>
   <div  class="advisor-detail" >
-      yyy
+    <form method="post" novalidate><!-- {% csrf_token %} -->
+      <table>
+        <tr>
+          <td width="30" align="right"><b>Advisor Code: </b></td>
+          <td width="30"> {{ repForm.advisorCode }} </td>
+        </tr>
+        <tr>
+          <th>First Name </th>
+          <th>Last Name </th>
+        </tr>
+        <tr>
+          <td> {{ repForm.firstName}} </td>
+          <td> {{ repForm.lastName}} </td>
+        </tr>
+        <tr>
+          <th>Branch Code</th>
+          <th>Language</th>
+        </tr>
+        <tr>
+          <td> {{ repForm.BranchCode}} </td>
+          <td> {{ repForm.LangCode}} </td>
+        </tr>
+        <tr>
+          <th colspan="2">Email Address</th>
+        </tr>
+        <tr>
+          <td colspan="2"> {{ repForm.eMail }} </td>
+        </tr>
+      </table>
+      <br>
+      {% csrf_token %}
+      <button type="submit" name="update_advisor" value='U' >Update</button>
+      <button type="submit" name="delete_advisor" value='D' >Delete</button>
+      <button type="submit" name="new_advisor"    value='N' >New</button>
+      <button type="submit" name="save_advisor"   value='C' disabled >Save</button>
+      <button type="submit" name="cancel_advisor" value='N' disabled >Cancel</button>
+    </form>
   </div>
-
+  <form name="detail_advisor" action="" method="post">{% csrf_token %}
+    <input type='hidden' id='dtlForm' name='advisorCode' value=''>
+  </form>
 </div>
 
 {% endblock %}
-<br/>
