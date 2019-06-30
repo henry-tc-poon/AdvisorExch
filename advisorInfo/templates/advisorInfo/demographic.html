@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
+<!-- {% csrf_token %} -->
 
 {% block head %}
-    <title>{{ dispTitle }}</title>
+{% load static %}
+  <link   rel="stylesheet" type="text/css" href="{% static 'css\advisor.css' %}" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/demographic.js' %}" ></script>
+  <title>Advisor demographic</title>
 {% endblock %}
 
 {% block body %}
 
-<h1>{{ dispMsg }}</h1>
   <br/>
   <br/>
   <br/>
@@ -17,8 +22,4 @@
   <br/>
   <br/>
   <br/>
-  <h9>Info: {{ dispInfo  }}</h9>
-  <br/>
-  <h9>Time: {{ currTime  }}</h9>
-
 {% endblock %}

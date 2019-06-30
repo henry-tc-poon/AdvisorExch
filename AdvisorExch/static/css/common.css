@@ -86,3 +86,17 @@ table.Hoverable tbody tr:nth-child(even):hover{
     background-color: #FFFACD ;
     cursor: pointer;
 }
+
+/*****************************************************************/
+
+.btn-enabled { }
+
+.btn-disabled {
+  /* cursor: not-allowed; */
+  pointer-events: none ;
+  border: 2px outset ButtonFace;
+  color: GrayText;
+  /* cursor: inherit; */
+  background-color: #ddd;
+  background: #ddd;
+}

@@ -18,3 +18,13 @@ class formAdvisor (forms.Form):
         eMail = cleaned_data.get('eMail')
 
 ##################################################################
+class formDemographic  (forms.Form):
+    advisorCode = forms.CharField(max_length=5)
+    BranchCode  = forms.CharField(max_length=5)
+    LangCode    = forms.CharField(max_length=1)
+
+    def clean_data  (self):
+        cleaned_data = super ( formAdvisor, self ).clean ()
+        advisorCode = cleaned_data.get('advisorCode')
+
+##################################################################

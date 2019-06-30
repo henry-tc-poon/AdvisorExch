@@ -45,7 +45,7 @@
         <td style="width: 200px; text-align: left;">   {{ row.lastName }}  </td>
         <td style="width: 200px; text-align: left;">   {{ row.firstName }} </td>
         <td style="width: 100px; text-align: center;"> {{ row.advisor }}   </td>
-      </tr>
+        </tr>
       {% endfor %}
       </tbody>
     </table>
@@ -78,16 +78,16 @@
           <th colspan="2">Email Address</th>
         </tr>
         <tr>
-          <td colspan="2"> {{ repForm.eMail }} </td>
+          <td colspan="2" width="60"> {{ repForm.eMail }} </td>
         </tr>
       </table>
       <br>
       {% csrf_token %}
-      <button type="submit" name="update_advisor" value='U' >Update</button>
-      <button type="submit" name="delete_advisor" value='D' >Delete</button>
-      <button type="submit" name="new_advisor"    value='N' >New</button>
-      <button type="submit" name="save_advisor"   value='C' disabled >Save</button>
-      <button type="submit" name="cancel_advisor" value='N' disabled >Cancel</button>
+      <button name="update_advisor" value='U' class="{{ btnState.uBtn }}" >Update</button>
+      <button name="delete_advisor" value='D' class="{{ btnState.dBtn }}" >Delete</button>
+      <button name="new_advisor"    value='N' >New</button>
+      <button name="save_advisor"   value='C' class="{{ btnState.sBtn }}" >Save</button>
+      <button name="cancel_advisor" value='N' class="{{ btnState.cBtn }}" >Cancel</button>
     </form>
   </div>
   <form name="detail_advisor" action="" method="post">{% csrf_token %}
