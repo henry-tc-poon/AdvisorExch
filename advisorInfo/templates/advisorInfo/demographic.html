@@ -11,11 +11,37 @@
 {% endblock %}
 
 {% block body %}
+  <br/>
 
-  <br/>
-  <br/>
-  <br/>
-  <br/>
+  <div  class="advisor-detail" >
+    <form method="post" novalidate><!-- {% csrf_token %} -->
+      <table>
+        <tr>
+          <td width="30" align="right"><b>Advisor Code: </b></td>
+          <td width="30"> {{ demoForm.advisorCode }} </td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <th>Birth Date</th>
+        </tr>
+        <tr>
+          <td> {{ demoForm.gender}} </td>
+          <td> {{ demoForm.birthDate}}   </td>
+        </tr>
+        <tr>
+          <th colspan="2">Licenses</th>
+        </tr>
+        <tr>
+          <td colspan="2" width="60"> {{ demoForm.licenses }} </td>
+        </tr>
+      </table>
+      <br>
+      {% csrf_token %}
+      <button name="update_demographic" value='U' class="{{ btnState.uBtn }}" >Update</button>
+      <button name="cancel_demographic" value='N' class="{{ btnState.cBtn }}" >Cancel</button>
+    </form>
+  </div>
+
   <br/>
   <br/>
   <br/>

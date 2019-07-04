@@ -66,7 +66,7 @@ def vAdvisor (request):
     dictCommon = vCommon (request, targMenu)
     toHtml  = dictCommon.get('html')
 
-    dictRtn = v4Adv.vAdvisorMain (  request )
+    dictRtn = v4Adv.vAdvisor (  request )
     dictHTML = { **dictCommon, **dictRtn }
 
     return render (request, toHtml, dictHTML )
@@ -77,7 +77,7 @@ def vDemographic (request):
     dictCommon = vCommon (request, targMenu)
     toHtml  = dictCommon.get('html')
 
-    dictRtn = v4Dmg.vDemographicMain (  request )
+    dictRtn = v4Dmg.vDemographic (  request )
     dictHTML = { **dictCommon, **dictRtn }
 
     return render (request, toHtml, dictHTML )

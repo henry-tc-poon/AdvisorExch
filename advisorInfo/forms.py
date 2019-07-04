@@ -20,11 +20,12 @@ class formAdvisor (forms.Form):
 ##################################################################
 class formDemographic  (forms.Form):
     advisorCode = forms.CharField(max_length=5)
-    BranchCode  = forms.CharField(max_length=5)
-    LangCode    = forms.CharField(max_length=1)
+    gender      = forms.CharField(max_length=1)
+    birthDate   = forms.DateField()
+    licenses    = forms.CharField(max_length=30)
 
     def clean_data  (self):
-        cleaned_data = super ( formAdvisor, self ).clean ()
+        cleaned_data = super ( formDemographic, self ).clean ()
         advisorCode = cleaned_data.get('advisorCode')
 
 ##################################################################

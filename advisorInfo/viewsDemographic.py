@@ -4,7 +4,7 @@ import AdvisorExch.views as aeView
 import pandas as pd
 
 ##################################################################
-def vDemographicMain (request):
+def vDemographic (request):
 
     advisorCode = ''
     dispInfo = ''
@@ -16,27 +16,35 @@ def vDemographicMain (request):
         advisorCode = ''
     else:
         advisorCode = request.session['advisorCode']
+    #
+    ###########################################################################
+    updtStmt = ''
 
-    advisorCode = request.session['advisorCode']
+    if request.POST.get("update_demographic"):
+
+        dbData = { 'advisorCode': request.POST.get("advisorCode", "")
+                 , 'gender':      request.POST.get("gender", "")
+                 , 'birthDate':   request.POST.get("birthDate", "")
+                 , 'licenses':    request.POST.get("licenses", "")
+                 }
+        updtStmt = vDemographicUpdate ( 'Update', dbData )
     #
     ###########################################################################
 
-    dtlCols = [ 'advisor', 'firstName', 'lastName', 'BranchCD', 'LangCD', 'E-Mail' ]
+    dtlCols = [ 'advisor', 'Gender', 'Birth Date', 'Licenses' ]
     dfDetail = pd.DataFrame(columns=dtlCols)
-    dfDetail = vDemographic ( advisorCode, dtlCols )
+    dfDetail = vDemographicDetail ( advisorCode, dtlCols )
     #
     ###########################################################################
     #
     if ( len (dfDetail) == 0 ) :
-        repForm = formDemographic()
+        demoForm = formDemographic()
     else:
-        repForm = formDemographic (
+        demoForm = formDemographic (
                       initial = { 'advisorCode': dfDetail.iloc[0]['advisor']
-                                , 'firstName':   dfDetail.iloc[0]['firstName']
-                                , 'lastName':    dfDetail.iloc[0]['lastName']
-                                , 'BranchCode':  dfDetail.iloc[0]['BranchCD']
-                                , 'LangCode':    dfDetail.iloc[0]['LangCD']
-                                , 'eMail':       dfDetail.iloc[0]['E-Mail']
+                                , 'gender':      dfDetail.iloc[0]['Gender']
+                                , 'birthDate':   dfDetail.iloc[0]['Birth Date']
+                                , 'licenses':    dfDetail.iloc[0]['Licenses']
                                 }
                             )
     #
@@ -45,17 +53,27 @@ def vDemographicMain (request):
     dispInfo = 'Advisor Code (' + advisorCode + ')'
 
     dictRtn.update ({ 'dispInfo' : dispInfo })
+    dictRtn.update ({ 'demoForm' : demoForm })
 
     return (dictRtn)
 
 
 ##################################################################
-def vDemographic ( repCode, dtlCols ):
+def vDemographicDetail ( repCode, dtlCols ):
 
     sqlStmt = '''
-            select advisor_code, first_name, last_name, BRN_CD, LANG_CD, eMail
-            from demographic
-            where upper(advisor_code) = '{RepCD}'
+            with cteAdvisor ( advisor_code )
+            as
+            (
+            	select '{RepCD}'
+            )
+            select	c.advisor_code
+            ,		gender = isNull ( gender, '' )
+            ,		birthDate, licenses = isNull ( licenses, '' )
+            from	cteAdvisor c
+            left join demographic d
+                   on c.advisor_code = d.advisor_code
+            ;
             '''.format ( RepCD = repCode.upper() )
     dfDetail = aeView.vExecSQL (sqlStmt)
 
@@ -65,5 +83,36 @@ def vDemographic ( repCode, dtlCols ):
         dfDetail = pd.DataFrame(columns=dtlCols)
 
     return dfDetail
+
+##################################################################
+def vDemographicUpdate ( repCode, dbData ):
+
+    updtStmt = '''
+            with cteDemographic ( advisor_code, gender, birthDate, licenses )
+            as
+            (
+            	select '{RepCD}', '{gender}', '{birthDate}', '{licenses}'
+            )
+            MERGE demographic d
+            Using cteDemographic c
+            on d.advisor_code = c.advisor_code
+            When MATCHED
+            Then update
+            Set  d.gender    = c.gender
+            ,    d.birthDate = c.birthDate
+            ,    d.licenses  = c.licenses
+            When not MATCHED
+            THEN
+            insert ( advisor_code, gender, birthDate, licenses )
+            values ( advisor_code, gender, birthDate, licenses )
+            ;
+            '''.format (  RepCD     = dbData.get('advisorCode')
+                        , gender    = dbData.get('gender')
+                        , birthDate = dbData.get('birthDate')
+                        , licenses  = dbData.get('licenses')
+                        )
+    aeView.vUpdtSQL (updtStmt)
+
+    return updtStmt
 
 ##################################################################

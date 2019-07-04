@@ -4,7 +4,7 @@ import AdvisorExch.views as aeView
 import pandas as pd
 
 ##################################################################
-def vAdvisorMain (request):
+def vAdvisor (request):
 
     advisorCode = ''
     advisorStr  = ''
